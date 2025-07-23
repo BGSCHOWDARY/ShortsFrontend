@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>🎬 YouTube Shorts Playlist</h2>
+
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Short</th>
+      <th>Full Song</th>
+    </tr>
+    <tr *ngFor="let item of shorts">
+      <td>{{ item.ShortTitle }}</td>
+      <td>
+        <iframe width="280" height="160"
+                [src]="item.ShortYouTubeUrl | safeUrl"
+                frameborder="0" allowfullscreen></iframe>
+      </td>
+      <td>
+        <button (click)="playSong(item.SongYouTubeUrl)">▶ Play Song</button>
+      </td>
+    </tr>
+  </table>
+
+  <div *ngIf="currentSongUrl" class="player">
+    <h3>🎵 Now Playing</h3>
+    <iframe [src]="currentSongUrl | safeUrl"
+            width="100%" height="400" frameborder="0" allowfullscreen></iframe>
+  </div>
+</div>
